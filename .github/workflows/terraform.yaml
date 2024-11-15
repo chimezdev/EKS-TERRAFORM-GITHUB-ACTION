@@ -3,7 +3,7 @@ name: 'Terraform-Deploy'
 
 on:
   workflow_dispatch:
-    inputes:
+    inputs:
       tfvars_file:
         description: 'Path to the .tfvars file'
         required: true
