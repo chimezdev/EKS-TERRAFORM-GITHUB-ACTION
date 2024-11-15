@@ -1,7 +1,6 @@
 
 variable "aws-region" {}
 variable "cluster-name" {}
-variable "cidr-block" {}
 variable "vpc-name" {}
 variable "vpc-cidr-block" {}
 variable "env" {}

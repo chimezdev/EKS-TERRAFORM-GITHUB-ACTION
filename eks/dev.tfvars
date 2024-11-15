@@ -1,7 +1,7 @@
 
 env                   = "dev"
 aws-region            = "eu-west-1"
-cidr-block            = "10.16.0.0/16"
+vpc-cidr-block        = "10.16.0.0/16"
 vpc-name              = "eks-github-action-vpc"
 igw-name              = "eks-github-action-igw"
 pub-subnet-count      = 3
