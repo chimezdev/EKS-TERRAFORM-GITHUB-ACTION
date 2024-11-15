@@ -84,5 +84,9 @@ As mentioned in the prerequisite, get your downloaded AWS IAM credentials and sa
 ### Create a Workflow(written in yaml) to deploy to resources to AWS
 - create a ***.github/workflow*** directory in the root directory.
 - create a ***terraform.yaml*** file in the directory
-- write the yaml configuration file. Check this repository.
+- write the yaml configuration file. Check ***.github/workflows/terraform.yaml***
 
+The Workflow will be triggered manually and configured to accept two parameters (tfvars file name and apply or destroy action).
+
+From your repository, click on the **Actions** tab and select **Terraform-Deploy**
+[Workflow](assets/)
