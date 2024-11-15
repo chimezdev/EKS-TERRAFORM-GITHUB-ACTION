@@ -40,28 +40,28 @@ You need to understand the following in other to make the best out of this proje
 
 Lets begin with the module directory files:
 
-> gather.tf
+**gather.tf**
 See the file ***/module/gather.tf*** Read the comments to understand what the certificate does.
 
-> vpc.tf
+**vpc.tf**
 See file /module/vpc.tf. Setup for AWS services related to VPC including VPC, internet gateway, public subnet and private subnets(with the desired number of subnets), public and private route tables respective to their type of subnets, NAT Gateway, elastic IP (required for NAT Gateway), security group for EKS cluster to restrict the access for specific people only
 
-> iam.tf
+**iam.tf**
 Created roles for our EKS cluster and node group, **AmazonEKSClusterPolicy**. Along with that, we have created an OIDC role for our EKS Cluster.
 
-> eks.tf
+**eks.tf**
 In this file, we have configured AWS EKS with private access point and Private node groups. Two node groups types were created, **ON-DEMAND** and **SPOT**
 
-> variables.tf
+**variables.tf**
 This file holds the required parameters for the service(IAM, VPC, EKS etc)
 
-> backend.tf
+**backend.tf**
 Here, we will configure which provider, in this case, AWS, version and where our terraform state file will be stored and dynamoDB for LOCKING. We are going to be using the S3 bucket we provisioned earlier(manually).
 
-> main.tf
+**main.tf**
 From here, we are calling all the configuration in module directory. We will provide values for the variables used for the services. Terraform will assign higher importance to any value found here before checking the ***.tfvars*** file.
 
-> dev.tfvars
+**dev.tfvars**
 This is where we initialized the value(s) for each variable. If you want to deploy the same services in the multiple environment then you can create new tfvars file as dev.tfvars. Then, create a different backend.tf file and apply the changes with different tfvars file.
 
 ## Validate Configuration files
@@ -71,7 +71,7 @@ At this stage, all our terraform configuration files are ready. But to be sure w
 - run `terraform validate` to verify that our configuration is free from error or misconfiguration. You should see like the sample screenshot below. If not kindly troubleshoot and run again.
 ![Validate](assets/valid.JPG)
 
-# Configure CI/CD Deployment Automation using GitHub Action
+## Configure CI/CD Deployment Automation using GitHub Action
 
 ### Add AWS credentials as repository secrets
 As mentioned in the prerequisite, get your downloaded AWS IAM credentials and save as GitHub secrets in your project repository.
@@ -79,7 +79,7 @@ As mentioned in the prerequisite, get your downloaded AWS IAM credentials and sa
 - Navigate to the settings of your GitHub repository and click on **Secrets and variables**
 - Click on Actions and Add your keys in the secrets section. Create **New Repository Secret**
 - Use the same secrets names as shown on the image.
-[Create Secrets](assets/add_secrets.JPG)
+![Create Secrets](assets/add_secrets.JPG)
 
 ### Create a Workflow(written in yaml) to deploy to resources to AWS
 - create a ***.github/workflow*** directory in the root directory.
@@ -89,4 +89,8 @@ As mentioned in the prerequisite, get your downloaded AWS IAM credentials and sa
 The Workflow will be triggered manually and configured to accept two parameters (tfvars file name and apply or destroy action).
 
 From your repository, click on the **Actions** tab and select **Terraform-Deploy**
-[Workflow](assets/)
+[Workflow](assets/workflow.JPG)
+
+## Run Workflow Manually
+To run the workflow, you need to provide a parameter.
+- Click on Run workflow after providing the arguments(Initially we will run plan only).
