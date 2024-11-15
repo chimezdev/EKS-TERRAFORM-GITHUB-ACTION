@@ -1,4 +1,5 @@
 # PROVISIONING OF PRODUCTION-READY AMAZON EKS CLUSTER WITH TERRAFORM AND GITHUB ACTIONS
+Shoutout to @AmanPathak-DevOps, the original owner of this project. [GitHub](https://github.com/AmanPathak-DevOps/EKS-Terraform-GitHub-Actions?tab=readme-ov-file)
 
 [![LinkedIn](https://img.shields.io/badge/Connect%20with%20me%20on-LinkedIn-blue.svg)](https://www.linkedin.com/in/livingstone-chimezie)
 [![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@ochuba)
@@ -8,7 +9,7 @@
 
 ![EKS- GitHub Actions- Terraform](assets/Presentation1.gif)
 
-This repository **Provisioning of Production-Ready Amazon EKS Clusters with Terraform and Automating Deployment with GitHub Actions** accompanies a blog post by @AmanPathak-DevOps and demonstrates the practical steps to set up and automate an EKS cluster deployment. See original blog post here: [Aman Pathak](https://blog.stackademic.com/configuring-production-ready-eks-clusters-with-terraform-and-github-actions-c046e8d44865)
+This repository **Provisioning of Production-Ready Amazon EKS Clusters with Terraform and Automating Deployment with GitHub Actions** accompanies a blog post by @AmanPathak-DevOps and demonstrates the practical steps to set up and automate an EKS cluster deployment.
 
 ## Project Overview
 This project covers:
@@ -69,3 +70,19 @@ At this stage, all our terraform configuration files are ready. But to be sure w
 ![Initialize Terraform](assets/validate.JPG)
 - run `terraform validate` to verify that our configuration is free from error or misconfiguration. You should see like the sample screenshot below. If not kindly troubleshoot and run again.
 ![Validate](assets/valid.JPG)
+
+# Configure CI/CD Deployment Automation using GitHub Action
+
+### Add AWS credentials as repository secrets
+As mentioned in the prerequisite, get your downloaded AWS IAM credentials and save as GitHub secrets in your project repository.
+
+- Navigate to the settings of your GitHub repository and click on **Secrets and variables**
+- Click on Actions and Add your keys in the secrets section. Create **New Repository Secret**
+- Use the same secrets names as shown on the image.
+[Create Secrets](assets/add_secrets.JPG)
+
+### Create a Workflow(written in yaml) to deploy to resources to AWS
+- create a ***.github/workflow*** directory in the root directory.
+- create a ***terraform.yaml*** file in the directory
+- write the yaml configuration file. Check this repository.
+
