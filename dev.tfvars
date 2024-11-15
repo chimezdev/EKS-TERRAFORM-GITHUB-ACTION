@@ -19,8 +19,8 @@ ngw-name              = "eks-github-action-ngw"
 eks-sg                = "eks-github-action-eks-sg"
 
 # EKS
-is_eks_role_enabled        = true
-is_eks_nodegroup_role_enabled = true
+# is_eks_role_enabled        = true
+# is_eks_nodegroup_role_enabled = true
 is-eks-cluster-enabled     = true
 cluster-version            = "1.31"
 cluster-name               = "eks-github-action-cluster"

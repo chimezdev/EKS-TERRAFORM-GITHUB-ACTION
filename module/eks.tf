@@ -17,9 +17,7 @@ resource "aws_eks_cluster" "eks" {
         bootstrap_cluster_creator_admin_permissions = true
     }
 
-    depends_on = [ aws_iam_role_policy_attachment.AmazonEKSClusterPolicy,
-        aws_iam_role_policy_attachment.AmazonEKSClusterPolicy.values
-    ]
+    depends_on = [ aws_iam_role_policy_attachment.AmazonEKSClusterPolicy ]
 
     tags = {
       Name = var.cluster-name
@@ -31,7 +29,7 @@ resource "aws_eks_cluster" "eks" {
 
 resource "aws_iam_openid_connect_provider" "eks-oidc" {
     client_id_list = ["sts.amazonaws.com"]
-    thumbprint_list = [data.tls_certificate.eks-certificate.certificate[0].sha1_fingerprint]
+    thumbprint_list = [data.tls_certificate.eks-certificate.certificates[0].sha1_fingerprint]
     url = data.tls_certificate.eks-certificate.url
 }
 
@@ -47,7 +45,7 @@ resource "aws_eks_addon" "eks-addons" {
 
 # NodeGroups
 resource "aws_eks_node_group" "ondemand-node" {
-    cluster_name    = cluster-name.eks[0].name
+    cluster_name    = aws_eks_cluster.eks[0].name
     node_group_name = "${var.cluster-name}-on-demand-nodes"
 
     node_role_arn = aws_iam_role.eks-nodegroup-role[0].arn

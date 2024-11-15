@@ -66,6 +66,6 @@ This is where we initialized the value(s) for each variable. If you want to depl
 ## Validate Configuration files
 At this stage, all our terraform configuration files are ready. But to be sure we have made no syntax or spelling error, let us validate our configuration.
 - run `terraform init` from the root directory
-![Initialize Terraform](assets/Presentation1.gif)
-- run `terraform validate` to verify that our configuration is free from error or misconfiguration.
-![Validate](assets/Presentation1.gif)
+![Initialize Terraform](assets/validate.JPG)
+- run `terraform validate` to verify that our configuration is free from error or misconfiguration. You should see like the sample screenshot below. If not kindly troubleshoot and run again.
+![Validate](assets/valid.JPG)

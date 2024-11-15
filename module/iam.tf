@@ -6,7 +6,7 @@ resource "random_integer" "random_suffix" {
 
 resource "aws_iam_role" "eks-cluster-role" {
   count = var.is_eks_role_enabled ? 1 : 0
-  name  = "${locals.cluster_name}-role-${random_integer.random_suffix.result}"
+  name  = "${var.cluster-name}-role-${random_integer.random_suffix.result}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -21,14 +21,14 @@ resource "aws_iam_role" "eks-cluster-role" {
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
-    for_each = var.is_eks_role_enabled ? toset(var.multi-policy): {}
+    for_each = var.is_eks_role_enabled ? toset(var.multi-policy): toset([])
     policy_arn = each.key
-    role = aws_iam_role.eks-cluster-role[count.index].name 
+    role = aws_iam_role.eks-cluster-role[0].name 
 }
 
 resource "aws_iam_role" "eks-nodegroup-role" {
   count = var.is_eks_nodegroup_role_enabled ? 1 : 0
-  name  = "${locals.cluster_name}-nodegroup-role-${random_integer.random_suffix.result}"
+  name  = "${var.cluster-name}-nodegroup-role-${random_integer.random_suffix.result}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -47,7 +47,6 @@ resource "aws_iam_role_policy_attachment" "eks-AmazonWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.eks-nodegroup-role[count.index].name
 }
-
 resource "aws_iam_role_policy_attachment" "eks-AmazonEKS_CNI_Policy" {
   count      = var.is_eks_nodegroup_role_enabled ? 1 : 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
@@ -58,10 +57,15 @@ resource "aws_iam_role_policy_attachment" "eks-AmazonEC2ContainerRegistryReadOnl
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.eks-nodegroup-role[count.index].name
 }
+resource "aws_iam_role_policy_attachment" "eks-AmazonEBSCSIDriverPolicy" {
+  count      = var.is_eks_nodegroup_role_enabled ? 1 : 0
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  role       = aws_iam_role.eks-nodegroup-role[count.index].name
+}
 
 # OIDC
 resource "aws_iam_role" "eks_oidc" {
-    assume_role_policy = data.aws_iam_role_policy_attachment.eks_oidc_assume_role_policy.json
+    assume_role_policy = data.aws_iam_policy_document.eks_oidc_assume_role_policy.json
     name = "eks-oidc"
 }
 

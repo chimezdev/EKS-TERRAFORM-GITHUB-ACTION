@@ -1,7 +1,7 @@
 
-locals {
-  cluster-name = var.cluster-name
-}
+# locals {
+#   cluster-name = var.cluster-name
+# }
 
 resource "aws_vpc" "vpc" {
     cidr_block         = var.cidr-block 
@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "igw" {
     tags = {
         Name                                          = var.igw-name
         env                                           = var.env
-        "kubernetes.io/cluster/${local.cluster-name}" = "Owned"
+        "kubernetes.io/cluster/${var.cluster-name}" = "Owned"
     } 
 
     depends_on = [aws_vpc.vpc] 
@@ -37,7 +37,7 @@ resource "aws_subnet" "public-subnet" {
     tags = {
       Name                                          = "${var.pub-sub-name}-${count.index + 1}"
       Env                                           = var.env
-      "kubernetes.io/cluster/${local.cluster-name}" = "owned"
+      "kubernetes.io/cluster/${var.cluster-name}" = "owned"
       "Kubernetes.io/role/elb"                      = "1"
     }
     depends_on = [ aws_vpc.vpc ]
@@ -53,7 +53,7 @@ resource "aws_subnet" "private-subnet" {
   tags = {
     Name                                          = "${var.pri-sub-name}-${count.index + 1}"
     Env                                           = var.env
-    "kubernetes.io/cluster/${local.cluster-name}" = "owned"
+    "kubernetes.io/cluster/${var.cluster-name}" = "owned"
     "kubernetes.io/role/internal-elb"            = "1"
   }
 
@@ -80,7 +80,7 @@ resource "aws_route_table" "public-rt" {
 resource "aws_route_table_association" "pub-sub-rt" {
   count = 3
   route_table_id = aws_route_table.public-rt.id
-  subnet_id = aws_subnet.public-subnet*[count.index].id
+  subnet_id = aws_subnet.public-subnet[count.index].id
 
   depends_on = [ aws_vpc.vpc, aws_subnet.public-subnet ]
 }
