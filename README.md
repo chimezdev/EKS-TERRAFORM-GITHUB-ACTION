@@ -94,3 +94,4 @@ From your repository, click on the **Actions** tab and select **Terraform-Deploy
 ## Run Workflow Manually
 To run the workflow, you need to provide a parameter.
 - Click on Run workflow after providing the arguments(Initially we will run plan only).
+![Run workflow](assets/run_workflow.JPG)
