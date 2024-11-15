@@ -138,9 +138,8 @@ jobs:
     - name: Terraform Plan
       if: ${{ github.event.inputs.action == 'plan'}}
       working-directory: eks
-      run: terraform init
       # Generates an execution plan for Terraform
-      run:
+      run: |
         terraform plan -var-file=${{ github.event.inputs.tfvars_file }} -input=false
 
     # Apply the Terraform Configuration according to the parameter

@@ -89,7 +89,7 @@ As mentioned in the prerequisite, get your downloaded AWS IAM credentials and sa
 The Workflow will be triggered manually and configured to accept two parameters (tfvars file name and apply or destroy action).
 
 From your repository, click on the **Actions** tab and select **Terraform-Deploy**
-[Workflow](assets/workflow.JPG)
+![Workflow](assets/workflow.JPG)
 
 ## Run Workflow Manually
 To run the workflow, you need to provide a parameter.
