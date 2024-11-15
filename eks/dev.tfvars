@@ -53,4 +53,4 @@ addons = [
   }
   # Add more addons as needed
 ]
-multi-policy = ["arn:aws:iam:aws:policy/AmazonEKSClusterPolicy", "arn:aws:iam:aws:policy/AmazonEKSVPCResourceController"]
+multi-policy = ["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy", "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"]
