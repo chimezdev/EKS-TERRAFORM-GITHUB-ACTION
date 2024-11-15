@@ -21,18 +21,19 @@ eks-sg                = "eks-github-action-eks-sg"
 # EKS
 is_eks_role_enabled        = true
 is_eks_nodegroup_role_enabled = true
-cluster-version            = "1.30"
-cluster-name               = "eks-cluster"
+is-eks-cluster-enabled     = true
+cluster-version            = "1.31"
+cluster-name               = "eks-github-action-cluster"
 endpoint-private-access    = true
 endpoint-public-access     = false
-ondemand_instance_types    = ["t3a.medium"]
-spot_instance_types        = ["c5a.large", "c5a.xlarge", "m5a.large", "m5a.xlarge", "c5.large", "m5.large", "t3a.large", "t3a.xlarge", "t3a.medium"]
+ondemand_instance_types    = ["t3a.small"]
+spot_instance_types        = ["c5a.large", "c5a.xlarge", "m5a.large", "m5a.xlarge", "c5.large", "m5.large", "t3a.large", "t3a.medium", "t3a.small"]
 desired_capacity_on_demand = "1"
 min_capacity_on_demand     = "1"
-max_capacity_on_demand     = "5"
+max_capacity_on_demand     = "2"
 desired_capacity_spot      = "1"
 min_capacity_spot          = "1"
-max_capacity_spot          = "10"
+max_capacity_spot          = "3"
 addons = [
   {
     name    = "vpc-cni",
@@ -52,3 +53,4 @@ addons = [
   }
   # Add more addons as needed
 ]
+multi-policy = ["arn:aws:iam:aws:policy/AmazonEKSClusterPolicy", "arn:aws:iam:aws:policy/AmazonEKSVPCResourceController"]

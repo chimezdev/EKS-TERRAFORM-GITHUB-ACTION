@@ -8,7 +8,7 @@
 
 ![EKS- GitHub Actions- Terraform](assets/Presentation1.gif)
 
-This repository **Provisioning of Production-Ready Amazon EKS Clusters with Terraform and Automating Deployment with GitHub Actions** accompanies a blog post by @AmanPathak-DevOps and demonstrates the practical steps to set up and automate an EKS cluster deployment. See original blog post here: ![Aman Pathak](https://blog.stackademic.com/configuring-production-ready-eks-clusters-with-terraform-and-github-actions-c046e8d44865)
+This repository **Provisioning of Production-Ready Amazon EKS Clusters with Terraform and Automating Deployment with GitHub Actions** accompanies a blog post by @AmanPathak-DevOps and demonstrates the practical steps to set up and automate an EKS cluster deployment. See original blog post here: [Aman Pathak](https://blog.stackademic.com/configuring-production-ready-eks-clusters-with-terraform-and-github-actions-c046e8d44865)
 
 ## Project Overview
 This project covers:
@@ -49,6 +49,23 @@ See file /module/vpc.tf. Setup for AWS services related to VPC including VPC, in
 Created roles for our EKS cluster and node group, **AmazonEKSClusterPolicy**. Along with that, we have created an OIDC role for our EKS Cluster.
 
 > eks.tf
-Here we configured private AWS EKS cluster and Private node groups.
+In this file, we have configured AWS EKS with private access point and Private node groups. Two node groups types were created, **ON-DEMAND** and **SPOT**
 
-In the configuration, we are creating two node groups types. First is ON-DEMAND type and the other is SPOT type to cost-optimize the cloud.
+> variables.tf
+This file holds the required parameters for the service(IAM, VPC, EKS etc)
+
+> backend.tf
+Here, we will configure which provider, in this case, AWS, version and where our terraform state file will be stored and dynamoDB for LOCKING. We are going to be using the S3 bucket we provisioned earlier(manually).
+
+> main.tf
+From here, we are calling all the configuration in module directory. We will provide values for the variables used for the services. Terraform will assign higher importance to any value found here before checking the ***.tfvars*** file.
+
+> dev.tfvars
+This is where we initialized the value(s) for each variable. If you want to deploy the same services in the multiple environment then you can create new tfvars file as dev.tfvars. Then, create a different backend.tf file and apply the changes with different tfvars file.
+
+## Validate Configuration files
+At this stage, all our terraform configuration files are ready. But to be sure we have made no syntax or spelling error, let us validate our configuration.
+- run `terraform init` from the root directory
+![Initialize Terraform](assets/Presentation1.gif)
+- run `terraform validate` to verify that our configuration is free from error or misconfiguration.
+![Validate](assets/Presentation1.gif)

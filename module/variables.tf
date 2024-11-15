@@ -1,4 +1,5 @@
 
+variable "aws-region" {}
 variable "cluster-name" {}
 variable "cidr-block" {}
 variable "vpc-name" {}
@@ -26,18 +27,37 @@ variable "eip-name" {}
 variable "ngw-name" {}
 variable "eks-sg" {}
 
+# IAM
+variable "is_eks_role_enabled" {
+  type = bool
+}
+variable "is_eks_nodegroup_role_enabled" {
+  type = bool
+}
+
 # EKS
+variable "is-eks-cluster-enabled" {}
 variable "is_eks_role_enabled" {}
 variable "is_eks_nodegroup_role_enabled" {}
 variable "cluster-version" {}
 variable "endpoint-private-access" {}
 variable "endpoint-public-access" {}
 variable "ondemand_instance_types" {
-  default = ["t3a.medium"]
+  default = ["t3a.small"]
 }
 variable "addons" {
   type = list(object({
     name    = string
     version = string
   }))
+}
+variable "spot_instance_types" {}
+variable "desired_capacity_on_demand" {}
+variable "min_capacity_on_demand" {}
+variable "max_capacity_on_demand" {}
+variable "desired_capacity_spot" {}
+variable "min_capacity_spot" {}
+variable "max_capacity_spot" {}
+variable "multi-policy" {
+  type = list(string)
 }
