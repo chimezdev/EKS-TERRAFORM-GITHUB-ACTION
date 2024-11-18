@@ -103,30 +103,40 @@ Plan: 39 to add, 0 to destroy or change.
 
 Now you can run the apply stage.
 Click on **Terraform-Action** then Click on the greater than (>) symbol to expand and view the logs.
+![Apply successful](/assets/Apply-successful.JPG)
 
+Apply stage is successful
 
 ## Validate Resources on AWS Console.
 
 **VPC**
-![]()
+![](/assets/vpc.JPG)
 
-** Public & Private Subnets **
-![]()
+VPC resource
 
-** Internet Gateway **
-![]()
+**Public & Private Subnets**
+![](/assets/subnets.JPG)
 
-** Security Groups **
-![]()
+Subnets
 
-** EKS Cluster **
-![]()
+**NAT Gateway**
+![](/assets/natgw.JPG)
+
+NAT Gateway resource
+
+
+**EKS Cluster**
+![](/assets/eks.JPG)
+
+EKS Cluster
+
+
 
 ** NodeGroups **
 ![]()
 
 ** OIDC Connector **
-![]()
+![](/assets/OIDC%20Connector.JPG)
 
 ## Teardown Resources
 

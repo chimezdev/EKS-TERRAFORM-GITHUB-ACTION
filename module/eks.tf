@@ -13,7 +13,7 @@ resource "aws_eks_cluster" "eks" {
     }
 
     access_config {
-        authentication_mode = "CONFIG_MAP"
+        authentication_mode = "API_AND_CONFIG_MAP"
         bootstrap_cluster_creator_admin_permissions = true
     }
 
@@ -104,4 +104,9 @@ resource "aws_eks_node_group" "spot-node" {
   disk_size = 20
 
   depends_on = [aws_eks_cluster.eks]
+}
+
+data "aws_eks_access_entry" "access-entry" {
+  cluster_name  = aws_eks_cluster.eks[0].name.name
+  principal_arn = "AWSReservedSSO_AdministratorAccess_4970cc0aed358653/ochuba"
 }
