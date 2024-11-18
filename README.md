@@ -111,30 +111,22 @@ Apply stage is successful
 
 **VPC**
 ![](/assets/vpc.JPG)
-
 VPC resource
 
 **Public & Private Subnets**
 ![](/assets/subnets.JPG)
-
-Subnets
+Created subnets
 
 **NAT Gateway**
 ![](/assets/natgw.JPG)
-
 NAT Gateway resource
-
 
 **EKS Cluster**
 ![](/assets/eks.JPG)
-
 EKS Cluster
-
-
 
 **NodeGroups**
 ![](/assets/node-group-nodes.JPG)
-
 Node groups and nodes
 
 ![](/assets/node%20instance.JPG)
@@ -154,3 +146,11 @@ Terraform destroy successful
 
 Verify on the console that all resources have been terminated.
 ![](/assets/terminated.JPG)
+
+## Congratulations
+Well done configuring this Production-ready EKS Cluster. 
+
+## Assignment
+- Deploy a simple nginx application to your cluster.
+
+HAPPY LEARNING!
