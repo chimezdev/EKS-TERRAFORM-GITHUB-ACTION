@@ -106,7 +106,3 @@ resource "aws_eks_node_group" "spot-node" {
   depends_on = [aws_eks_cluster.eks]
 }
 
-data "aws_eks_access_entry" "access-entry" {
-  cluster_name  = aws_eks_cluster.eks[0].name
-  principal_arn = "arn:aws:iam::${var.account_id}:role/AWSReservedSSO_AdministratorAccess_4970cc0aed358653/ochuba"
-}

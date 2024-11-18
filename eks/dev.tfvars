@@ -1,5 +1,4 @@
 
-account_id            = "038462750799"
 env                   = "dev"
 aws-region            = "eu-west-1"
 vpc-cidr-block        = "10.16.0.0/16"
