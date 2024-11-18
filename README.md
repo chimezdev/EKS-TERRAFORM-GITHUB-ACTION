@@ -32,7 +32,7 @@ You need to understand the following in other to make the best out of this proje
 -   Have basic understanding of YAML files for GitHub Actions workflow.
 
 ### Directory Structure
-[Directory structure](assets/)
+![Directory structure](assets/tree.JPG)
 
 **module directory** - Contains the resource scripts related to the EKS cluster and it’s required service(IAM, VPC, etc).
 
@@ -95,3 +95,38 @@ From your repository, click on the **Actions** tab and select **Terraform-Deploy
 To run the workflow, you need to provide a parameter.
 - Click on Run workflow after providing the arguments(Initially we will run plan only).
 ![Run workflow](assets/run_workflow.JPG)
+
+The Plan stage is Successful.
+![Plan Successful](assets/plan-success.JPG)
+![](assets/succeed-plan.JPG)
+Plan: 39 to add, 0 to destroy or change.
+
+Now you can run the apply stage.
+Click on **Terraform-Action** then Click on the greater than (>) symbol to expand and view the logs.
+
+
+## Validate Resources on AWS Console.
+
+**VPC**
+![]()
+
+** Public & Private Subnets **
+![]()
+
+** Internet Gateway **
+![]()
+
+** Security Groups **
+![]()
+
+** EKS Cluster **
+![]()
+
+** NodeGroups **
+![]()
+
+** OIDC Connector **
+![]()
+
+## Teardown Resources
+

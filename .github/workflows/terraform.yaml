@@ -144,7 +144,8 @@ jobs:
 
     # Apply the Terraform Configuration according to the parameter
     - name: Terraform Action
-      if: ${{ github.event.inputs.action == 'apply' }}    
+      if: ${{ github.event.inputs.action == 'apply' }} 
+      working-directory: eks   
       run: terraform ${{ github.event.inputs.action }} -auto-approve -var-file=${{ github.event.inputs.tfvars_file }} -input=false
     
     - name: Terraform Destroy
