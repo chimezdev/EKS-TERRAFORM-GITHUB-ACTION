@@ -107,6 +107,6 @@ resource "aws_eks_node_group" "spot-node" {
 }
 
 data "aws_eks_access_entry" "access-entry" {
-  cluster_name  = aws_eks_cluster.eks[0].name.name
+  cluster_name  = aws_eks_cluster.eks[0].name
   principal_arn = "AWSReservedSSO_AdministratorAccess_4970cc0aed358653/ochuba"
 }
