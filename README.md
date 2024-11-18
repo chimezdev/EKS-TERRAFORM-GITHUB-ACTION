@@ -132,11 +132,25 @@ EKS Cluster
 
 
 
-** NodeGroups **
-![]()
+**NodeGroups**
+![](/assets/node-group-nodes.JPG)
+
+Node groups and nodes
+
+![](/assets/node%20instance.JPG)
+View ec2 instance created from the EC2 console
 
 ** OIDC Connector **
 ![](/assets/OIDC%20Connector.JPG)
 
-## Teardown Resources
+**Installed Add-ons**
+![](/assets/add-ons.JPG)
 
+## Teardown Resources
+To destroy, select the destroy option from the parameters.
+![](/assets/destroy.JPG)
+
+Terraform destroy successful
+
+Verify on the console that all resources have been terminated.
+![](/assets/terminated.JPG)
