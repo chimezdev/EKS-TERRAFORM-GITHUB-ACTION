@@ -1,4 +1,8 @@
 
+variable "account_id" {
+  type = string
+  default = "038462750799"
+}
 variable "aws-region" {}
 variable "cluster-name" {}
 variable "cidr-block" {}
